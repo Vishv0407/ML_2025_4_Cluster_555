@@ -9,6 +9,12 @@ from math import ceil
 # Get the absolute base directory relative to the script location
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.join(SCRIPT_DIR)  # Current directory contains subdirs 10, 11, 12
+# Create directory for saving videos
+VIDEOS_DIR = os.path.join(SCRIPT_DIR, "trajectory_vids")
+
+# Ensure the videos directory exists
+if not os.path.exists(VIDEOS_DIR):
+    os.makedirs(VIDEOS_DIR)
 
 # Step 1: Load appropriate base image based on subdirectory
 def load_base_image(subdir):
@@ -105,7 +111,7 @@ def create_combined_videos(base_image, trajectories, fps=30, duration=2):
         max_frame = max(max(p[0] for p in t['points']) for t in current_trajectories) if current_trajectories else 0
         frame_step = max(1, max_frame // total_frames) if max_frame > 0 else 1
         
-        output_path = os.path.join(SCRIPT_DIR, f'combined_trajectories_video_{video_idx + 1}.mp4')
+        output_path = os.path.join(VIDEOS_DIR, f'combined_trajectories_video_{video_idx + 1}.mp4')
         fourcc = cv2.VideoWriter_fourcc(*'mp4v')
         video_writer = cv2.VideoWriter(output_path, fourcc, fps, (base_image.width, base_image.height))
         
@@ -132,7 +138,7 @@ def main():
         base_image = load_base_image(traj['subdir'])
         if base_image is None:
             continue
-        output_path = os.path.join(SCRIPT_DIR, f'trajectory_{traj["file"].split(".")[0]}.mp4')
+        output_path = os.path.join(VIDEOS_DIR, f'trajectory_{traj["file"].split(".")[0]}.mp4')
         create_individual_video(base_image, traj, output_path)
     
     # Create combined videos (up to 30 trajectories per video)
