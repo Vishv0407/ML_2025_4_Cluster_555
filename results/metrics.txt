@@ -1,0 +1,18 @@
+Average Accuracy (Folds 3-7): 0.8425 (±0.0566)
+
+Final Model Accuracy (Folds 3-7 Combined): {final_accuracy:.4f}
+
+Final Model Classification Report:
+Class 0: Precision=1.00, Recall=1.00, F1=1.00
+Class 1: Precision=1.00, Recall=1.00, F1=1.00
+
+Fold Accuracies:
+Fold 3: 0.8267
+Fold 4: 0.8267
+Fold 5: 0.7733
+Fold 6: 0.8400
+Fold 7: 0.9459
+
+Full Data Confusion Matrix:
+[[373   0]
+ [  0 373]]

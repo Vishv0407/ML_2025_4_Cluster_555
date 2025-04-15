@@ -1,0 +1,9 @@
+Test Accuracy: 0.7154
+
+Test Classification Report:
+Class 0: Precision=0.76, Recall=0.84, F1=0.80
+Class 1: Precision=0.58, Recall=0.45, F1=0.51
+
+Test Confusion Matrix:
+[[140  26]
+ [ 44  36]]
